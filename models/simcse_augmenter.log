@@ -1,0 +1,51 @@
+2025-07-11 18:56:52,993 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-07-11 18:56:52,993 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-mpnet-base-v2
+2025-07-11 18:57:40,662 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-07-11 18:57:40,662 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-mpnet-base-v2
+2025-07-11 18:58:04,168 - SimCSEAugmenter - INFO - 成功加载模型: paraphrase-multilingual-mpnet-base-v2
+2025-07-11 18:58:04,177 - SimCSEAugmenter - INFO - 初始化SimCSE增强器 | 设备: cuda
+2025-07-11 18:58:04,178 - SimCSEAugmenter - INFO - 基础模型: paraphrase-multilingual-mpnet-base-v2 | 增强倍数: 4x
+2025-07-11 18:58:04,178 - SimCSEAugmenter - INFO - 训练模式: 启用
+2025-07-11 18:58:04,178 - SimCSEAugmenter - INFO - 开始SimCSE微调训练 | 样本数: 4 | 训练轮数: 1
+2025-07-11 18:58:07,653 - SimCSEAugmenter - ERROR - 训练过程中出错: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+2025-07-11 18:58:07,699 - SimCSEAugmenter - ERROR - Traceback (most recent call last):
+  File "C:\Users\86157\PycharmProjects\metabg\models\simcse_augmenter.py", line 105, in train
+    self.model.fit(
+  File "C:\anaconda3\Lib\site-packages\sentence_transformers\fit_mixin.py", line 408, in fit
+    trainer.train(resume_from_checkpoint=resume_from_checkpoint)
+  File "C:\anaconda3\Lib\site-packages\transformers\trainer.py", line 2207, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\anaconda3\Lib\site-packages\transformers\trainer.py", line 2458, in _inner_training_loop
+    self.control = self.callback_handler.on_train_begin(args, self.state, self.control)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\anaconda3\Lib\site-packages\transformers\trainer_callback.py", line 506, in on_train_begin
+    return self.call_event("on_train_begin", args, state, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\anaconda3\Lib\site-packages\transformers\trainer_callback.py", line 556, in call_event
+    result = getattr(callback, event)(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\anaconda3\Lib\site-packages\transformers\integrations\integration_utils.py", line 931, in on_train_begin
+    self.setup(args, state, model, **kwargs)
+  File "C:\anaconda3\Lib\site-packages\transformers\integrations\integration_utils.py", line 858, in setup
+    self._wandb.init(
+  File "C:\anaconda3\Lib\site-packages\wandb\sdk\wandb_init.py", line 1185, in init
+    raise e
+  File "C:\anaconda3\Lib\site-packages\wandb\sdk\wandb_init.py", line 1162, in init
+    wi.setup(kwargs)
+  File "C:\anaconda3\Lib\site-packages\wandb\sdk\wandb_init.py", line 306, in setup
+    wandb_login._login(
+  File "C:\anaconda3\Lib\site-packages\wandb\sdk\wandb_login.py", line 298, in _login
+    wlogin.prompt_api_key()
+  File "C:\anaconda3\Lib\site-packages\wandb\sdk\wandb_login.py", line 228, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+
+2025-07-11 18:58:07,699 - SimCSEAugmenter - WARNING - 训练失败，将继续使用原始模型生成增强
+2025-07-11 18:58:07,700 - SimCSEAugmenter - INFO - 开始生成增强嵌入 | 原始样本数: 4
+2025-07-11 18:58:07,879 - SimCSEAugmenter - INFO - 应用语义过滤...
+2025-07-11 18:58:07,879 - SimCSEAugmenter - INFO - 进行语义过滤 | 阈值: 0.8
+2025-07-11 18:58:07,880 - SimCSEAugmenter - INFO - 过滤完成! 保留 16/16 个嵌入 (100.0%)
+2025-07-11 18:58:07,880 - SimCSEAugmenter - INFO - 过滤后总样本数: 20
+2025-07-11 18:58:07,881 - SimCSEAugmenter - INFO - 嵌入向量已保存至: ./simcse_augments\augmented_data_embeddings.npy
+2025-07-11 18:58:07,882 - SimCSEAugmenter - INFO - 标签已保存至: ./simcse_augments\augmented_data_labels.npy
